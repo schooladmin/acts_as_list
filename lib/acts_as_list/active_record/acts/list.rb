@@ -223,7 +223,7 @@ module ActiveRecord
           # Returns the bottom item
           def bottom_item(except = nil)
             conditions = scope_condition
-            conditions = "#{conditions} AND #{self.class.primary_key} != #{except.id}" if except
+            conditions = "#{conditions} AND #{self.class.primary_key} != '#{except.id}'" if except
             acts_as_list_class.unscoped.find(:first, :conditions => conditions, :order => "#{acts_as_list_class.table_name}.#{position_column} DESC")
           end
 
